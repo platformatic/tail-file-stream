@@ -1,0 +1,17 @@
+{
+  "name": "tail-file-stream",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "unit": "c8 node --test",
+    "test": "npm run lint && npm run unit"
+  },
+  "author": "Ivan Tymoshenko <ivan@tymoshenko.me>",
+  "license": "MIT",
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "standard": "^17.1.0"
+  }
+}
