@@ -1,0 +1,37 @@
+{
+  "name": "tail-file-stream",
+  "version": "0.0.1",
+  "description": "Stream for reading file updates in real-time",
+  "main": "index.js",
+  "type": "commonjs",
+  "types": "index.d.ts",
+  "scripts": {
+    "lint": "standard",
+    "unit": "c8 node --test",
+    "types": "tsd",
+    "test": "npm run lint && npm run unit && npm run types"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformatic/tail-file-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "tail",
+    "file",
+    "watch",
+    "readable"
+  ],
+  "author": "Ivan Tymoshenko <ivan@tymoshenko.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/platformatic/tail-file-stream/issues"
+  },
+  "homepage": "https://github.com/platformatic/tail-file-stream#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.26",
+    "c8": "^9.1.0",
+    "standard": "^17.1.0",
+    "tsd": "^0.30.7"
+  }
+}
