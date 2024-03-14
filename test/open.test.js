@@ -3,26 +3,25 @@
 const assert = require('node:assert')
 const { test } = require('node:test')
 const { join } = require('node:path')
+const { tspl } = require('@matteo.collina/tspl')
 const { createReadStream } = require('..')
 
 test('should open a file', (t, done) => {
+  const { strictEqual, ok } = tspl(t, { plan: 2 })
+
   const pathToFile = join(__dirname, 'files', 'test-file-1.txt')
   const stream = createReadStream(pathToFile, { autoWatch: false })
 
-  let openEmitted = false
   stream.on('open', (fd) => {
-    openEmitted = true
-    assert.strictEqual(typeof fd, 'number')
+    strictEqual(typeof fd, 'number')
   })
 
-  let readyEmitted = false
   stream.on('ready', () => {
-    readyEmitted = true
+    ok(true)
   })
 
-  setImmediate(() => {
-    assert.strictEqual(openEmitted, true)
-    assert.strictEqual(readyEmitted, true)
+  stream.on('data', () => {
+    stream.destroy()
     done()
   })
 })
