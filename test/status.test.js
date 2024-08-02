@@ -23,12 +23,21 @@ test('stream statuses while reading', (t, done) => {
     assert.strictEqual(stream.destroyed, false)
   })
 
+  let isLastEOF = false
   stream.on('eof', () => {
     assert.strictEqual(stream.pending, false)
-    assert.strictEqual(stream.waiting, true)
-    assert.strictEqual(stream.watching, true)
     assert.strictEqual(stream.closed, false)
     assert.strictEqual(stream.destroyed, false)
+
+    if (!isLastEOF) {
+      assert.strictEqual(stream.waiting, true)
+      assert.strictEqual(stream.watching, true)
+      isLastEOF = true
+    } else {
+      assert.strictEqual(stream.waiting, false)
+      assert.strictEqual(stream.watching, false)
+    }
+
     stream.unwatch()
   })
 

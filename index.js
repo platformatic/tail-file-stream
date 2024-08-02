@@ -40,6 +40,8 @@ class TailFileStream extends Readable {
   #mode
   #fd
 
+  #highWaterMark
+
   #autoWatch
   #persistent
 
@@ -58,6 +60,8 @@ class TailFileStream extends Readable {
     this.#end = options.end ?? Infinity
     this.#pos = this.#start
     this.bytesRead = 0
+
+    this.#highWaterMark = options.highWaterMark
 
     this.#autoWatch = options.autoWatch ?? true
     this.#persistent = options.persistent ?? true
@@ -171,7 +175,7 @@ class TailFileStream extends Readable {
 
     if (this.#waiting) {
       this.#waiting = false
-      this.push(null)
+      this._read(this.#highWaterMark)
     }
   }
 
