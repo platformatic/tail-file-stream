@@ -16,7 +16,7 @@ function createTestFile (t) {
   return filePath
 }
 
-function appendFileWithInterval (path, data, options = {}, callback) {
+function appendFileWithInterval (path, data, options = {}, callback = () => {}) {
   if (typeof options === 'function') {
     callback = options
     options = {}

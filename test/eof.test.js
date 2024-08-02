@@ -20,12 +20,18 @@ test('should emit eof event every time it reaches the end', (t, done) => {
   })
 
   stream.on('eof', () => {
-    assert.strictEqual(data, testData.repeat(count++))
+    if (count <= 10) {
+      assert.strictEqual(data, testData.repeat(count))
+    } else {
+      // last _read before close
+      assert.strictEqual(data, expectedData)
+    }
+    count++
   })
 
   stream.on('close', () => {
     assert.strictEqual(data, expectedData)
-    assert.strictEqual(count, 11)
+    assert.strictEqual(count, 12)
     done()
   })
 
