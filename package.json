@@ -1,6 +1,6 @@
 {
   "name": "tail-file-stream",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Stream for reading file updates in real-time",
   "main": "index.js",
   "type": "commonjs",
